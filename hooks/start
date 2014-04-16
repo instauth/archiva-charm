@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e # If any command fails, stop execution of the hook with that error
+
+. hooks/proj.cfg
+
+juju-log "Entered the $PROJ_NAME charm start hook."
+
+juju-log "Opening port $PORT for $PROJ_NAME"
+open-port 8080
+
+/opt/tools/apache-archiva-2.0.1/bin/archiva start &
+disown
+
+juju-log "$PROJ_NAME starting..."

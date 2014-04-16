@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e # If any command fails, stop execution of the hook with that error
+
+. hooks/proj.cfg
+
+juju-log "Entered the $PROJ_NAME charm stop hook."
+
+killall archiva
